@@ -1,0 +1,411 @@
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  background: black;
+  color: white;
+}
+
+/* === SCREEN GENERAL === */
+.screen {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.center { text-align: center; z-index: 5; }
+
+/* === START SCREEN === */
+#start-screen {
+  background: url("assets/background.png") center/cover no-repeat;
+}
+.title {
+  font-size: 28px;
+  color: #ffcc00;
+  text-shadow: 2px 2px #000;
+  line-height: 1.3;
+}
+.subtitle-line {
+  display: block;
+  margin: 4px 0;
+  font-size: 16px;
+  color: #ffcc00;
+  text-align: center;
+  transform: translateX(4px);
+}
+
+/* === CHARACTER SELECT === */
+#character-select {
+  background: url("assets/background.png") center/cover no-repeat;
+}
+.choose-title {
+  font-size: 14px;
+  color: #ffcc00;
+  margin-bottom: 10px;
+}
+.char-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.char-img {
+  width: 140px; /* 2x original size */
+  height: 140px;
+  image-rendering: pixelated;
+  object-fit: contain; /* Prevents squishing */
+}
+.arrow {
+  background: none;
+  border: none;
+  color: orange;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+input {
+  padding: 8px;
+  font-family: 'Press Start 2P';
+  font-size: 10px;
+  border: 2px solid #d17c28;
+  text-align: center;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+}
+
+/* === BUTTONS === */
+.pixel-btn {
+  background: #d17c28;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-family: 'Press Start 2P';
+  cursor: pointer;
+  margin-top: 10px;
+  border-bottom: 4px solid #8a4c0b;
+  z-index: 5;
+  /* Added for icons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pixel-btn:hover {
+  background: #f89c42;
+}
+
+/* === STATUS BAR === */
+#status-bar, #status-bar-loc {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 50px;
+  background: #5b2b0a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; /* Better spacing */
+  z-index: 10;
+  font-size: 10px;
+  padding: 0 10px; /* Added padding */
+  box-sizing: border-box; /* Better padding behavior */
+}
+
+/* === GAMEPLAY === */
+#character-container, #location-container {
+  width: 100%; height: 100%; position: relative;
+}
+#home-bg, #location-bg {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; top: 0; left: 0; z-index: 0;
+}
+/* Homebase character (6x size) */
+#character {
+  width: 420px;  /* 6x original size (70px * 6) */
+  height: 420px;
+  position: absolute; top: 60%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  image-rendering: pixelated;
+  object-fit: contain; /* Fixes squishing */
+}
+/* DEFAULT Location character (2x size) */
+#characterLoc {
+  width: 140px;  /* 2x original size (70px * 2) */
+  height: 140px;
+  position: absolute; top: 60%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  image-rendering: pixelated;
+  object-fit: contain; /* Fixes squishing */
+  transition: width 0.2s, height 0.2s; /* Optional: smooth size change */
+}
+/* NEW rule for the Village-specific size */
+#characterLoc.char-village {
+  width: 100px;  /* "A little smaller" size */
+  height: 100px;
+}
+
+/* === TASK MENU === */
+#task-menu, #task-menu-loc {
+  position: absolute;
+  right: 20px; bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px; z-index: 10;
+}
+.task-btn {
+  background: #d17c28;
+  border: none; color: #fff;
+  font-size: 10px; font-family: 'Press Start 2P';
+  padding: 6px 10px; cursor: pointer;
+  border-bottom: 3px solid #8a4c0b;
+  /* Added for icons */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.task-btn:hover { background: #f89c42; }
+
+/* === MAP SCREEN === */
+#map-screen {
+  /* background: url("assets/worldwide.png") center/cover no-repeat; */
+  /* ^ Removed this, JS will handle it ^ */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+/* container for map elements */
+#map-container { 
+  text-align: center; 
+  z-index: 5; 
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* From team's code */
+}
+.map-title {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffcc00;
+  font-size: 14px;
+}
+
+/* DELETED old .map-btn and .map-btn-positions styles */
+
+#returnHomeBtn { 
+  position: absolute; 
+  bottom: 10%; 
+  left: 50%;
+  transform: translateX(-50%); /* Better centering */
+  z-index: 20;
+}
+
+/* === ANALOG (Diamond) === */
+#mobile-controls, #mobile-controls-loc {
+  position: fixed;
+  bottom: 25px; left: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+}
+.ctrl {
+  background: #d17c28;
+  color: #fff;
+  font-size: 18px;
+  width: 45px; height: 45px;
+  border: none; border-radius: 8px;
+  cursor: pointer; margin: 3px;
+  font-family: 'Press Start 2P';
+}
+.ctrl:hover { background: #f89c42; }
+.ctrl-row { display: flex; justify-content: center; align-items: center; }
+
+/* === POPUP TASK (RETRO STYLE) === */
+#popup-task.hidden { display: none; }
+#popup-task {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 60;
+}
+.popup-box {
+  background: #5b2b0a;
+  border: 3px solid #d17c28;
+  padding: 25px 35px;
+  text-align: center;
+  color: #fff;
+  width: 320px;
+  animation: fadeIn 0.2s ease;
+}
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+/* === POPUP GAME OVER === */
+#gameover-popup.hidden { display: none; }
+#gameover-popup {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 50;
+}
+.popup-content {
+  background: #5b2b0a;
+  border: 3px solid #d17c28;
+  padding: 20px 40px;
+  text-align: center;
+  color: #fff;
+}
+
+/* === ANIMATION === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* === NEW STAT BARS === */
+.stat-display {
+  display: flex;
+  align-items: center;
+}
+.stat-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  image-rendering: pixelated; /* Keeps icons pixel-perfect */
+}
+.stat-bar-container {
+  width: 80px; /* You can change this width */
+  height: 12px;
+  background: #2b1505; /* Dark empty part of the bar */
+  border: 2px solid #d17c28; /* Pixel-style border */
+  border-radius: 2px;
+  overflow: hidden;
+}
+.stat-bar {
+  height: 100%;
+  background: #00ff00; /* Default green fill */
+  transition: width 0.5s ease; /* Smooth animation */
+}
+.stat-display span {
+  margin-left: 5px;
+  min-width: 25px; /* Gives space for numbers */
+  text-align: left;
+}
+#greeting, #loc-name {
+  margin-left: 0;
+}
+
+/* === NEW BUTTON ICONS === */
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: middle; /* Aligns icon with text */
+  image-rendering: pixelated;
+}
+.pixel-btn .btn-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+  image-rendering: pixelated;
+}
+
+/* Special larger icon for popup titles */
+.popup-title-icon {
+  width: 32px; /* Extra large size */
+  height: 32px;
+  margin-right: 8px;
+  vertical-align: middle;
+  image-rendering: pixelated;
+}
+
+
+/* === 
+  NEW STYLES FROM TEAM
+  (FOR FREE-ROAM MAP)
+=== */
+
+#map-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#characterMap {
+  position: absolute;
+  width: 70px; /* Team's default size */
+  height: 70px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 0.1s linear, left 0.1s linear;
+  z-index: 10;
+  image-rendering: pixelated;
+  object-fit: contain; /* Added to prevent squish */
+}
+
+/* Tombol ENTER */
+#enterBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 25;
+}
+.hidden {
+  display: none !important;
+}
+
+/* === MOBILE CONTROLS FOR MAP === */
+#mobile-controls-map {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+}
+/* This .ctrl rule is a duplicate but is harmless */
+#mobile-controls-map .ctrl {
+  background: #d17c28;
+  color: #fff;
+  font-size: 18px;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 3px;
+  font-family: 'Press Start 2P';
+}
+#mobile-controls-map .ctrl:hover {
+  background: #f89c42;
+}
+#mobile-controls-map .ctrl-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

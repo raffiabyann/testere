@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adventure Over The Edge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <section id="start-screen" class="screen active">
+    <div class="center">
+      <h1 class="title">
+        ADVENTURE<br>
+        <span class="subtitle-line">of</span><br>
+        THE EDGE
+      </h1>
+      <button id="startBtn" class="pixel-btn">Start</button>
+    </div>
+  </section>
+
+  <section id="character-select" class="screen">
+    <div class="center">
+      <h2 class="choose-title">Choose your character</h2>
+      <div class="char-carousel">
+        <button id="prevChar" class="arrow">⮜</button>
+        <img id="charPreview" src="assets/charhead1.png" class="char-img" alt="Character Preview">
+        <button id="nextChar" class="arrow">⮞</button>
+      </div>
+      <input type="text" id="playerName" placeholder="Enter your name..." />
+      <button id="startGameBtn" class="pixel-btn">Start Adventure</button>
+    </div>
+  </section>
+
+  <section id="homebase-screen" class="screen">
+    <div id="status-bar">
+      <div class="stat-display">
+        <img src="assets/time.png" class="stat-icon" alt="Time">
+        <span id="game-time">06:00</span>
+      </div>
+      <span id="greeting">Selamat Datang</span>
+      <div class="stat-display">
+        <img src="assets/hunger.png" class="stat-icon" alt="Hunger">
+        <div class="stat-bar-container">
+          <div id="hunger-bar" class="stat-bar" style="width: 50%;"></div>
+        </div>
+        <span id="hunger-val">50</span>
+      </div>
+      <div class="stat-display">
+        <img src="assets/energy.png" class="stat-icon" alt="Energy">
+        <div class="stat-bar-container">
+          <div id="energy-bar" class="stat-bar" style="width: 50%;"></div>
+        </div>
+        <span id="energy-val">50</span>
+      </div>
+      <div class="stat-display">
+        <img src="assets/hygiene.png" class="stat-icon" alt="Hygiene">
+        <div class="stat-bar-container">
+          <div id="hygiene-bar" class="stat-bar" style="width: 50%;"></div>
+        </div>
+        <span id="hygiene-val">50</span>
+      </div>
+      <div class="stat-display">
+        <img src="assets/happiness.png" class="stat-icon" alt="Happy">
+        <div class="stat-bar-container">
+          <div id="happy-bar" class="stat-bar" style="width: 50%;"></div>
+        </div>
+        <span id="happy-val">50</span>
+      </div>
+      <div class="stat-display">
+        <img src="assets/money.png" class="stat-icon" alt="Money">
+        <span id="money">2500</span>
+      </div>
+    </div>
+
+    <div id="character-container">
+      <img id="home-bg" src="assets/homebasePagi.png" alt="background">
+      <img id="character" src="assets/charhead1.png" alt="character">
+    </div>
+
+    <div id="task-menu">
+      <button class="task-btn" data-task="eat"><img src="assets/eat.png" class="btn-icon"> Eat</button>
+      <button class="task-btn" data-task="bath"><img src="assets/hygiene.png" class="btn-icon"> Bath</button>
+      <button class="task-btn" data-task="sleep"><img src="assets/sleep.png" class="btn-icon"> Sleep</button>
+      <button class="task-btn" data-task="chores"><img src="assets/chores.png" class="btn-icon"> Chores</button>
+      <button class="task-btn" data-task="exit"><img src="assets/exit.png" class="btn-icon"> Exit</button>
+    </div>
+
+    <div id="mobile-controls">
+      <button class="ctrl" data-dir="up">⬆️</button>
+      <div class="ctrl-row">
+        <button class="ctrl" data-dir="left">⬅️</button>
+        <button class="ctrl" data-dir="down">⬇️</button>
+        <button class="ctrl" data-dir="right">➡️</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="map-screen" class="screen">
+    <div id="map-container">
+      <h2 id="map-title-text" class="map-title">Select a Location</h2>
+
+      <img id="map-bg" src="assets/worldwide.png" alt="map background">
+      <img id="characterMap" src="assets/char1.png" alt="character">
+      <button id="enterBtn" class="pixel-btn hidden">ENTER</button>
+      
+      <button id="returnHomeBtn" class="pixel-btn">🏡 Return Home</button>
+    </div>
+    
+    <div id="mobile-controls-map">
+      <button class="ctrl" data-dir="w">⬆️</button>
+      <div class="ctrl-row">
+        <button class="ctrl" data-dir="a">⬅️</button>
+        <button class="ctrl" data-dir="s">⬇️</button>
+        <button class="ctrl" data-dir="d">➡️</button>
+      </div>
+    </div>
+  </section>
+  <section id="location-screen" class="screen">
+    <div id="status-bar-loc">
+      <div class="stat-display">
+        <img src="assets/time.png" class="stat-icon" alt="Time">
+        <span id="game-time-loc">06:00</span>
+      </div>
+      <span id="loc-name">Location</span>
+      <div class="stat-display">
+        <img src="assets/hunger.png" class="stat-icon" alt="Hunger">
+        <div class="stat-bar-container">
+          <div id="hunger-bar-loc" class="stat-bar" style="width: 50%;"></div>
+        </div>
+        <span id="hunger-val-loc">50</span>
+      </div>
+      <div class="stat-display">
+        <img src="assets/energy.png" class="stat-icon" alt="Energy">
+        <div class="stat-bar-container">
+          <div id="energy-bar-loc" class="stat-bar" style="width: 50%;"></div>
+        </div>
+        <span id="energy-val-loc">50</span>
+      </div>
+      <div class="stat-display">
+        <img src="assets/hygiene.png" class="stat-icon" alt="Hygiene">
+        <div class="stat-bar-container">
+          <div id="hygiene-bar-loc" class="stat-bar" style="width: 50%;"></div>
+        </div>
+        <span id="hygiene-val-loc">50</span>
+      </div>
+      <div class="stat-display">
+        <img src="assets/happiness.png" class="stat-icon" alt="Happy">
+        <div class="stat-bar-container">
+          <div id="happy-bar-loc" class="stat-bar" style="width: 50%;"></div>
+        </div>
+        <span id="happy-val-loc">50</span>
+      </div>
+      <div class="stat-display">
+        <img src="assets/money.png" class="stat-icon" alt="Money">
+        <span id="money-loc">2500</span>
+      </div>
+    </div>
+
+    <div id="location-container">
+      <img id="location-bg" src="assets/beach.png" alt="background">
+      <img id="characterLoc" src="assets/charhead1.png" alt="character">
+    </div>
+
+    <div id="task-menu-loc">
+      <button class="task-btn" data-action="activity"><img src="assets/activity.png" class="btn-icon"> Do Activity</button>
+      <button class="task-btn" data-action="return"><img src="assets/exit.png" class="btn-icon"> Return to Map</button>
+    </div>
+
+    <div id="mobile-controls-loc">
+      <button class="ctrl" data-dir="up">⬆️</button>
+      <div class="ctrl-row">
+        <button class="ctrl" data-dir="left">⬅️</button>
+        <button class="ctrl" data-dir="down">⬇️</button>
+        <button class="ctrl" data-dir="right">➡️</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="popup-task" class="hidden">
+    <div class="popup-box">
+      <h3 id="popup-title">Task</h3>
+      <p id="popup-text">Description</p>
+      <div class="popup-buttons">
+        <button id="popup-yes" class="pixel-btn"><img src="assets/yes.png" class="btn-icon"> YES</button>
+        <button id="popup-no" class="pixel-btn"><img src="assets/no.png" class="btn-icon"> NO</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="gameover-popup" class="hidden">
+    <div class="popup-content">
+      <h2>💀 GAME OVER 💀</h2>
+      <p>Your stats dropped to zero...</p>
+      <button id="restartBtn" class="pixel-btn">Restart</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
